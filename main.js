@@ -74,13 +74,12 @@ function initMobileMenu() {
 const GOOGLE_FORMS = {
     // Deplasman Formu
     deployment: {
-        url: 'https://docs.google.com/forms/d/e/1FAIpQLScq4gWAKF6c5RjzBfVuEAwBdTSjvcHrz4MdlGLBR1TrVb2k7w/formResponse',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSfbaobJ2ISpRpexRNbkiRFQJKAf4PfsyON6RuCoHwXo_Ngqkg/formResponse',
         fields: {
-            fullName: 'entry.453360435',
-            phone: 'entry.1885755863',
-            email: 'entry.1931708297',
-            passoCheck: 'entry.1459692919',
-            visaCheck: 'entry.406397246'
+            fullName: 'entry.129769400',
+            phone: 'entry.511278705',
+            passoCheck: 'entry.1287914702',
+            visaCheck: 'entry.697762184'
         }
     },
 
@@ -177,7 +176,6 @@ function initDeplasmanLogic() {
         const formData = {
             fullName: document.getElementById('fullName').value,
             phone: document.getElementById('phone').value,
-            email: document.getElementById('email')?.value || '',
             passoCheck: document.querySelector('input[name="passoCheck"]:checked')?.value,
             visaCheck: document.querySelector('input[name="visaCheck"]:checked')?.value
         };
@@ -199,7 +197,13 @@ function initDeplasmanLogic() {
         btn.textContent = 'GÖNDERİLİYOR...';
 
         try {
-            await submitToGoogleForm(GOOGLE_FORMS.deployment.url, GOOGLE_FORMS.deployment.fields, formData);
+            const submitData = {
+                fullName: formData.fullName,
+                phone: formData.phone,
+                passoCheck: formData.passoCheck === 'Evet' ? 'Evet, Passolig Kartım Var' : 'Hayır, Passolig Kartım Yok',
+                visaCheck: formData.visaCheck === 'Evet' ? 'Vizem Aktif (Süresi Geçerli)' : 'Vizem Yok / Süresi Dolmuş'
+            };
+            await submitToGoogleForm(GOOGLE_FORMS.deployment.url, GOOGLE_FORMS.deployment.fields, submitData);
             showAlert('✅ Başvurunuz başarıyla alındı! Tribünde görüşmek üzere.', 'success');
             form.reset();
             // Reset sonrası UI düzeltmeleri
