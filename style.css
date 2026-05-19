@@ -1,0 +1,736 @@
+/* =====================================================
+   KAPALI KALE TARAFTARLAR DERNEĞİ - CSS
+   MOBİL OPTİMİZE VE GENİŞLETİLMİŞ GÖRÜNÜM
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* ========================================
+       RENK STANDARDİZASYONU
+       ======================================== */
+    --color-black: #1d1d1b;      /* Siyah */
+    --color-white: #f6f6f6;      /* Beyaz */
+    --color-gray: #8a8a89;       /* Gri */
+    --color-red: #c01819;        /* Kırmızı */
+    --color-red-dark: #8b0000;   /* Koyu kırmızı (hover için) */
+    --color-yellow: #fed315;     /* Sarı */
+    
+    /* Yardımcı renkler */
+    --color-dark: #111111;       /* Kart arka planları için koyu ton */
+    
+    /* Gradient'ler */
+    --gradient-primary: linear-gradient(135deg, #c01819 0%, #8b0000 100%);
+    --gradient-yellow: linear-gradient(135deg, #fed315 0%, #FFA500 100%);
+    
+    /* Fontlar */
+    --font-primary: 'Montserrat', sans-serif;
+    
+    /* Spacing */
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    
+    /* Transitions */
+    --transition-normal: 0.3s ease;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    line-height: 1.6;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.content-section {
+    flex: 1;
+    padding: var(--spacing-md) 0;
+    min-height: auto;
+}
+
+/* =====================================================
+   HEADER & NAVBAR
+   ===================================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--color-black);
+    border-bottom: 3px solid var(--color-red);
+    padding: 0.8rem 0;
+    box-shadow: 0 4px 20px rgba(254, 211, 21, 0.1);
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px; /* İçerik en fazla buraya kadar genişler */
+    margin: 0 auto;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* =============================
+   LOGO
+   ============================= */
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.site-logo {
+    max-height: 50px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+}
+
+/* =============================
+   HAMBURGER MENU BUTTON
+   ============================= */
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: 2px solid var(--color-yellow);
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 4px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:active {
+    background: rgba(254, 211, 21, 0.1);
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--color-yellow);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =============================
+   NAVIGATION MENU
+   ============================= */
+
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-white);
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-yellow);
+    background-color: var(--color-red);
+    box-shadow: 0 0 10px var(--color-red);
+}
+
+/* =====================================================
+   MOBİL RESPONSIVE - HAMBURGER MENU
+   ===================================================== */
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 70px;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 280px;
+        max-width: 80%;
+        height: calc(100vh - 70px);
+        background: var(--color-black);
+        border-right: 3px solid var(--color-red);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        padding: 1.5rem 0;
+        transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow-y: auto;
+        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        border-bottom: 1px solid #333;
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: var(--color-red);
+        color: var(--color-yellow);
+        border-left: 4px solid var(--color-yellow);
+        box-shadow: none;
+    }
+    
+    .nav-overlay {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(3px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* =====================================================
+   GENEL SAYFA YAPILARI
+   ===================================================== */
+
+.page-title {
+    text-align: left;
+    font-size: 2rem;
+    margin: 0 0 2rem 0;
+    color: var(--color-yellow);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--color-red);
+    display: block;
+    padding-bottom: 0.5rem;
+    width: fit-content;
+}
+
+/* =====================================================
+   HAKKIMIZDA SAYFASI - GENİŞLETİLMİŞ GÖRÜNÜM
+   ===================================================== */
+
+.about-wrapper {
+    width: 100%;
+    max-width: 100%; /* GÜNCELLENDİ: 900px sınırı kaldırıldı, tam genişlik */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.text-block {
+    width: 100%;
+    margin-bottom: 3rem;
+    background: #111;
+    padding: 2rem;
+    border-left: 4px solid var(--color-red);
+}
+
+.text-block p { 
+    margin-bottom: 1rem; 
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: #ddd; 
+}
+
+.highlight { 
+    color: var(--color-yellow); 
+    font-weight: bold; 
+}
+
+@media (max-width: 768px) {
+    .text-block {
+        padding: 1.5rem;
+    }
+}
+
+/* =====================================================
+   DEPLASMAN BAŞVURUSU - GENİŞLETİLMİŞ GÖRÜNÜM
+   ===================================================== */
+
+.deplasman-wrapper {
+    width: 100%;
+    max-width: 100%; /* GÜNCELLENDİ: 800px sınırı kaldırıldı */
+    margin: 0;
+}
+
+/* =====================================================
+   FORMLAR - GENİŞLETİLMİŞ GÖRÜNÜM
+   ===================================================== */
+
+.form-wrapper {
+    background: var(--color-dark);
+    padding: 2rem; /* Geniş alan olduğu için padding artırıldı */
+    border: 1px solid var(--color-red);
+    max-width: 100%; /* GÜNCELLENDİ: 600px sınırı kaldırıldı, tam genişlik */
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-yellow);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    background: #000;
+    border: 1px solid #333;
+    color: white;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-yellow);
+}
+
+button[type="submit"],
+.btn-submit {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--color-red);
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+}
+
+button[type="submit"]:hover,
+.btn-submit:hover {
+    background: var(--color-red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(192, 24, 25, 0.4);
+}
+
+button[type="submit"]:active,
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Radio Kartları - Responsive */
+.radio-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.radio-card {
+    background: #000;
+    border: 2px solid #333;
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 4px;
+    font-weight: 600;
+    touch-action: manipulation;
+}
+
+.radio-card input {
+    display: none;
+}
+
+.radio-card:has(input:checked) {
+    background: var(--color-red);
+    border-color: var(--color-yellow);
+    color: var(--color-yellow);
+    transform: scale(1.05);
+}
+
+.radio-card:active {
+    transform: scale(0.98);
+}
+
+.radio-card.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    border-color: #444;
+}
+
+/* Uyarı Mesajları */
+.warning-box {
+    background-color: rgba(254, 211, 21, 0.1);
+    border: 1px solid var(--color-yellow);
+    color: var(--color-yellow);
+    padding: 1rem;
+    margin-top: 1rem;
+    display: none;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* =====================================================
+   GALERİ
+   ===================================================== */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(162px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 202.5px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.gallery-item:hover { 
+    border-color: var(--color-yellow); 
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.gallery-item:hover img { 
+    transform: scale(1.1); 
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    transform: translateY(100%);
+    transition: 0.3s;
+}
+
+.gallery-item:hover .gallery-caption { 
+    transform: translateY(0); 
+}
+
+/* =====================================================
+   SOSYAL MEDYA
+   ===================================================== */
+
+.contact-social {
+    text-align: left;
+}
+
+.contact-social h4 {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-red);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    background-color: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.social-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+}
+
+.social-icon:hover,
+.social-icon:active {
+    background-color: var(--color-red);
+    border-color: var(--color-red);
+    color: var(--color-white);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(192, 24, 25, 0.4);
+}
+
+/* =====================================================
+   İLETİŞİM LAYOUT
+   ===================================================== */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.contact-info h3 {
+    color: var(--color-red);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.contact-item {
+    margin-bottom: 1.5rem;
+    color: var(--color-gray);
+}
+
+.contact-item strong {
+    color: white;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    background: var(--color-black);
+    border-top: 2px solid var(--color-red);
+    padding: 0.65rem 0 1rem; 
+    text-align: center;
+}
+
+.footer .site-logo {
+    display: block;
+    margin: 0.25rem auto 0.45rem; 
+    width: 150px;
+}
+
+.footer p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+.footer p:last-child {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* =====================================================
+   MOBİL RESPONSIVE - DETAYLAR
+   ===================================================== */
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.6rem;
+        padding: 0.5rem;
+    }
+    
+    .form-wrapper {
+        padding: 1.5rem 1rem;
+    }
+    
+    .radio-cards {
+        flex-direction: column;
+    }
+    
+    .radio-card {
+        min-width: 100%;
+    }
+    
+    .site-logo {
+        max-height: 40px;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .social-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 65px;
+    }
+    
+    .header {
+        padding: 0.6rem 0;
+    }
+    
+    .page-title {
+        font-size: 1.4rem;
+    }
+    
+    .site-logo {
+        max-height: 35px;
+    }
+    
+    input,
+    select,
+    textarea {
+        padding: 0.9rem;
+    }
+    
+    button[type="submit"],
+    .btn-submit {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .social-icons {
+        gap: 12px;
+    }
+    
+    .social-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .social-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .nav-menu {
+        width: 320px;
+    }
+    
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (min-width: 993px) {
+    body {
+        padding-top: 100px;
+    }
+    
+    .nav-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .contact-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-link,
+    .radio-card,
+    .social-icon,
+    button {
+        min-height: 44px; 
+        min-width: 44px;
+    }
+    
+    .nav-link:hover {
+        background: transparent;
+        color: var(--color-white);
+    }
+    
+    .nav-link:active {
+        background-color: var(--color-yellow);
+        color: var(--color-black);
+    }
+}
